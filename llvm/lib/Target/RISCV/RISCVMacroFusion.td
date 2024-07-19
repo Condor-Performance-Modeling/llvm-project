@@ -9,6 +9,13 @@
 // ===---------------------------------------------------------------------===//
 // The following definitions describe the macro fusion predicators.
 
+// Fuse LD followed by MUL
+def TuneLDMULFusion
+  : SimpleFusion<"ld-mul-fusion", "HasLDMULFusion",
+                 "Enable LD+MUL macro fusion",
+                 CheckOpcode<[LD]>,
+                 CheckOpcode<[MUL]>>;
+
 // Fuse LUI followed by ADDI or ADDIW:
 //   rd = imm[31:0] which decomposes to
 //   lui rd, imm[31:12]
